@@ -2,11 +2,16 @@
   "name": "generator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "ts-node src/app.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.7.6"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  }
 }

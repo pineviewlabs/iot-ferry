@@ -11,4 +11,4 @@ RUN R -e 'install.packages(c(\
 # Remove all the Rocker example project files
 RUN rm -rf /srv/shiny-server/**
 # Copy application files into the container
-COPY . /srv/shiny-server/
+COPY ./app.R /srv/shiny-server/

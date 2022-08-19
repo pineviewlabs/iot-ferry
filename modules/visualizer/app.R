@@ -9,7 +9,7 @@ ui <- fluidPage(tags$style(type = "text/css", "#map {height: 100vh !important;}"
 # Shiny server code (logic)
 server <- function(input, output, session) {
   # Path/name of a CSV file with ferry positions
-  points_file_name = "/tmp/shiny-data/points.csv"
+  points_file_name = "/tmp/shiny-data/route.csv"
   
   # Dynamic polling for a CSV file contents
   # Positions are stored as a data.frame
@@ -43,7 +43,7 @@ server <- function(input, output, session) {
       addProviderTiles(providers$Stamen.TonerLite,
                        options = providerTileOptions(noWrap = TRUE)) %>%
       # Starting map lat/lng bounds (hard-coded, don't do that in production code)
-      fitBounds(10, 40, 15, 50)
+      fitBounds(7.9, 57.5, 10.1, 59.1)
   })
   
   # Observer which will be triggered when any reactive dependency changes
@@ -52,8 +52,6 @@ server <- function(input, output, session) {
     pts <- points()
     # This is the way to tell leaflet to apply changes to an already created map
     leafletProxy("map", data = data.matrix(pts)) %>%
-      # Change map lat/lng bounds to contain the full trajectory
-      fitBounds(min(pts$lat), min(pts$lng), max(pts$lat), max(pts$lng)) %>%
       # Remove all the points / lines
       clearShapes() %>%
       # Add the points (which are actually small circles)
