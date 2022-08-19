@@ -4,3 +4,9 @@ export const random = (min: number, max: number) =>
 
 // Pause an execution for ms milliseconds
 export const pause = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+// Exit process with optional error reporting
+export function exit(code: number, error?: unknown): never {
+  if (error) console.error(error);
+  process.exit(code);
+}

@@ -9,6 +9,7 @@ export class Point {
     this.lng = point.lng;
   }
 
+  // Calculate the distance between two points
   static distance(point1: Point, point2: Point) {
     return Math.sqrt(
       Math.pow(point2.lat - point1.lat, 2) +
@@ -16,11 +17,8 @@ export class Point {
     );
   }
 
+  // Create a new point's instance from the existing point
   static from(point: Point) {
     return new Point(point.lat, point.lng);
-  }
-
-  static default() {
-    return new Point(0, 0);
   }
 }

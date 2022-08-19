@@ -57,8 +57,17 @@
           }
         },
         "modules": {
+          "analyzer": {
+            "version": "0.0.2",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "${MODULES.analyzer}"
+            }
+          },
           "generator": {
-            "version": "0.0.1",
+            "version": "0.0.2",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
@@ -72,7 +81,7 @@
             }
           },
           "visualizer": {
-            "version": "0.0.1",
+            "version": "0.0.2",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
@@ -97,11 +106,20 @@
     },
     "$edgeHub": {
       "properties.desired": {
-        "schemaVersion": "1.1",
-        "routes": {},
+        "schemaVersion": "1.2",
+        "routes": {
+          "generatorToAnalyzer": "FROM /messages/modules/generator/outputs/position INTO BrokeredEndpoint(\"/modules/analyzer/inputs/position\")",
+          "analyzerToCloud": "FROM /messages/modules/analyzer/outputs/* INTO $upstream"
+        },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
         }
+      }
+    },
+    "generator": {
+      "properties.desired": {
+        "AverageSpeed": 0.02,
+        "Jitter": 0.005
       }
     }
   }
