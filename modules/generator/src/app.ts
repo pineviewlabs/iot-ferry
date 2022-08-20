@@ -4,15 +4,9 @@ import { IoTClient } from "./iot";
 
 import { ports } from "./ports";
 import { Ferry } from "./ferry";
-import { Point } from "./point";
 
 // File to save the route coordinates to
 const dataFilePath = "/tmp/shiny-data/route.csv";
-
-interface FerryPosition {
-  previous: Point | null;
-  current: Point | null;
-}
 
 // Entrypoint
 async function main() {
@@ -21,12 +15,19 @@ async function main() {
   // Initialize a ferry object
   const ferry = new Ferry({ ports });
 
+  // Create an IoT Client
   const iotClient = await IoTClient.create({
+    // When new message arrives,
     onMessage: (input, data) => {
+      // Just log it to the console
       console.info(input, data);
     },
+    // When module twin properties changes,
     onTwinDesiredProperties: ({ AverageSpeed, Jitter }) => {
+      console.info(`New properties: ${AverageSpeed}, ${Jitter}`);
+      // Set new average speed if provided
       if (AverageSpeed) ferry.setAverageSpeed(AverageSpeed);
+      // Set new jitter if provided
       if (Jitter) ferry.setJitter(Jitter);
     },
   });

@@ -10,10 +10,10 @@
             "minDockerVersion": "v1.25",
             "loggingOptions": "",
             "registryCredentials": {
-              "ioted": {
-                "address": "ioted.azurecr.io",
-                "password": "37jmO03bkyacPvSlDUWTvBcccR5y=XC=",
-                "username": "ioted"
+              "iotferry": {
+                "address": "${CONTAINER_REGISTRY_SERVER}",
+                "password": "${CONTAINER_REGISTRY_PASSWORD}",
+                "username": "${CONTAINER_REGISTRY_USERNAME}"
               }
             }
           }
@@ -58,7 +58,7 @@
         },
         "modules": {
           "analyzer": {
-            "version": "0.0.2",
+            "version": "0.0.3",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
@@ -67,7 +67,7 @@
             }
           },
           "generator": {
-            "version": "0.0.2",
+            "version": "0.0.3",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
@@ -81,7 +81,7 @@
             }
           },
           "visualizer": {
-            "version": "0.0.2",
+            "version": "0.0.3",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
