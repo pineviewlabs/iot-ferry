@@ -1,0 +1,84 @@
+div.outer {
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+
+body, label, input, button, select {
+  font-family: 'Nunito Sans', Helvetica;
+  font-weight: 200;
+}
+
+body {
+  background-color: #F2F7FB;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+  margin: 0;
+}
+
+.main {
+  display: flex;
+}
+
+.navbar {
+  height: 64px;
+  background-color: #ffffff;
+  border: none;
+  margin: 0;
+  width: 100%;
+}
+
+.navbar .container-fluid {
+  height: 64px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar>.container-fluid .navbar-brand {
+  padding: 0;
+  margin: 0 10px;
+  height: auto;
+}
+
+.navbar .logo {
+  height: 64px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #A6B7C2;
+  font-size: 16px;
+  font-weight: 700;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  transition: 0.2s;
+  padding: 0 24px;
+}
+
+.navbar-default .navbar-nav>.active,
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav .active a:hover,
+.navbar-default .navbar-nav li a:hover {
+  background-color: #F2F7FB;
+  color: #0069B4;
+}
+
+.navbar li a div {
+  padding-right: 14px;
+}
+
+.navbar svg path {
+  transition: 0.2s;
+}
+
+.navbar-default .navbar-nav>.active>a svg path,
+.navbar li:hover svg path {
+  fill: #0069B4;
+}
+
+.about-page {
+  padding: 20px;
+}

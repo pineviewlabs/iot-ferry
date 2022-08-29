@@ -12,3 +12,4 @@ RUN R -e 'install.packages(c(\
 RUN rm -rf /srv/shiny-server/**
 # Copy application files into the container
 COPY ./app.R /srv/shiny-server/
+COPY ./www /srv/shiny-server/www

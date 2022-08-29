@@ -3,8 +3,34 @@ library(shiny)
 # Leaflet library used to visualize the map
 library(leaflet)
 
-# Shiny UI (in this case — just the full-screen leaflet map)
-ui <- fluidPage(tags$style(type = "text/css", "#map {height: 100vh !important;}"),leafletOutput("map"))
+# Shiny UI
+ui <- navbarPage(
+  # Logo (ferry)
+  title = div(img(class = "logo", src = "ferry.png")),
+  id = "nav",
+  header = tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
+  # Map page
+  tabPanel(
+    "Interactive map",
+    icon = div(includeHTML("www/svg/icon-map.svg")),
+    div(class = "main",
+      div(
+        class = "outer",
+        leafletOutput("map", width = "100%", height = "100%")
+      )
+    )
+  ),
+  # "About" page
+  tabPanel(
+    "About",
+    icon = div(includeHTML("www/svg/icon-about.svg")),
+    div(
+      class="about-page",
+      h1("About: IoT Ferry Demo"),
+      div(class="about-content", "TBD")
+    )
+  )
+)
 
 # Shiny server code (logic)
 server <- function(input, output, session) {
@@ -30,8 +56,8 @@ server <- function(input, output, session) {
       if (file.exists(points_file_name))
         read.csv(points_file_name)
       else
-        data.frame(lat = c(),
-                   lng = c(),)
+        data.frame(lat = c(0),
+                   lng = c(0))
     }
   )
   
